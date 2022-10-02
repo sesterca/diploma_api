@@ -28,10 +28,6 @@ public class UserTests{
         userMethod = new UserMethod();
     }
 
-    @AfterEach
-    public void tearDown(){userClient.deleteUser(user);
-    }
-
     @Test
     @DisplayName("Проверка создания пользователя")
     public void createNewUser(){

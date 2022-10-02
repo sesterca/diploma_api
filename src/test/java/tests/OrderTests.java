@@ -23,6 +23,7 @@ public class OrderTests{
     public void setUp(){
         userClient = new UserClient();
         userMethod = new UserMethod();
+        orderClient = new OrderClient();
     }
 
     @Test
@@ -40,15 +41,7 @@ public class OrderTests{
             order.setId(105);
             order.setPetId(9809680);
             order.setQuantity(1);
-
-            given()
-                    .spec(BaseSpec.baseSpec)
-                    .body(order)
-                    .when()
-                    .post(Endpoints.MAKE_ORDER.getEndpoint())
-                    .then()
-                    .statusCode(200)
-                    .log().body();
+            orderClient.placeAnOrder(order);
         });
     }
 

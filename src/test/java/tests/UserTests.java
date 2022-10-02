@@ -48,7 +48,7 @@ public class UserTests{
 
     @Test
     @DisplayName("Проверка авторизации пользователя")
-    public void loginUser(String username, String password, int statusCode){
+    public void loginUser(){
 
         step("Создание пользователя", () -> {
             user = userMethod.createUserByModel();
@@ -57,16 +57,7 @@ public class UserTests{
         });
 
         step("Авторизация пользователя", () -> {
-            given()
-                    .spec(BaseSpec.baseSpec)
-                    .formParam("username", username)
-                    .formParam("password", password)
-                    .log().uri()
-                    .when()
-                    .get(Endpoints.LOGIN_USER.getEndpoint())
-                    .then()
-                    .statusCode(statusCode)
-                    .log().body();
+            userClient.loginUser(user);
         });
     }
 

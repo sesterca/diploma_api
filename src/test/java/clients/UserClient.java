@@ -1,5 +1,6 @@
 package clients;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import models.ApiResponse;
 import models.User;
 
@@ -9,6 +10,7 @@ public class UserClient extends BaseSpec {
 
     public ApiResponse createUser(User user){
         ApiResponse response = given()
+                .filter(new AllureRestAssured())
                 .spec(baseSpec)
                 .body(user)
                 .when()
@@ -22,6 +24,7 @@ public class UserClient extends BaseSpec {
 
     public void changeUser(User user){
         given()
+                .filter(new AllureRestAssured())
                 .spec(baseSpec)
                 .body(user)
                 .when()
@@ -32,6 +35,7 @@ public class UserClient extends BaseSpec {
 
     public ApiResponse getUser(User user){
         ApiResponse response = given()
+                .filter(new AllureRestAssured())
                 .spec(baseSpec)
                 .when()
                 .get(Endpoints.REFER_TO_USER.getEndpoint() + user.getUsername())
@@ -44,6 +48,7 @@ public class UserClient extends BaseSpec {
 
     public void loginUser(User user){
         given()
+                .filter(new AllureRestAssured())
                 .spec(baseSpec)
                 .formParam("username", user.getUsername())
                 .formParam("password", user.getPassword())
@@ -56,6 +61,7 @@ public class UserClient extends BaseSpec {
 
     public void logoutUser(User user){
         given()
+                .filter(new AllureRestAssured())
                 .spec(baseSpec)
                 .when()
                 .get(Endpoints.LOGOUT_USER.getEndpoint())
@@ -65,10 +71,11 @@ public class UserClient extends BaseSpec {
 
     public void deleteUser(User user){
         given()
+                .filter(new AllureRestAssured())
                 .spec(baseSpec)
                 .when()
                 .delete(Endpoints.REFER_TO_USER.getEndpoint() + user.getUsername())
                 .then()
-                .statusCode(404);
+                .statusCode(200);
     }
 }

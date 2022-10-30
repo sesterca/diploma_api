@@ -10,6 +10,12 @@ public enum Endpoints {
     LOGOUT_USER("/user/logout");
 
     private String endpoint;
-    Endpoints(String endpoint){this.endpoint = endpoint;}
-    public String getEndpoint(){return endpoint;}
+
+    Endpoints(String endpoint) {
+        this.endpoint = endpoint;
+    }
+
+    public String getEndpoint() {
+        return endpoint;
+    }
 }

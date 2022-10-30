@@ -7,8 +7,10 @@ import static io.restassured.RestAssured.*;
 
 public class BaseSpec {
 
+    String baseUri = "https://petstore.swagger.io/";
+
     public static RequestSpecification baseSpec = with()
-            .baseUri("https://petstore.swagger.io/")
+            .baseUri(baseURI)
             .basePath("/v2")
             .header("apiKey","special-key")
             .contentType(ContentType.JSON)

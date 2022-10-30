@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 public class UserClient extends BaseSpec {
 
     public ApiResponse createUser(User user){
-        ApiResponse response = given()
+        return given()
                 .filter(new AllureRestAssured())
                 .spec(baseSpec)
                 .body(user)
@@ -19,7 +19,6 @@ public class UserClient extends BaseSpec {
                 .log().body()
                 .statusCode(200)
                 .extract().as(ApiResponse.class);
-        return response;
     }
 
     public void changeUser(User user){
@@ -34,7 +33,7 @@ public class UserClient extends BaseSpec {
     }
 
     public ApiResponse getUser(User user){
-        ApiResponse response = given()
+        return given()
                 .filter(new AllureRestAssured())
                 .spec(baseSpec)
                 .when()
@@ -43,7 +42,6 @@ public class UserClient extends BaseSpec {
                 .log().status()
                 .log().body()
                 .extract().as(ApiResponse.class);
-        return response;
     }
 
     public void loginUser(User user){

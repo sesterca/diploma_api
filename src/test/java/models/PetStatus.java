@@ -6,7 +6,10 @@ public enum PetStatus {
     SOLD("sold");
 
     public String status;
-    PetStatus(String status) {this.status = status;}
+
+    PetStatus(String status) {
+        this.status = status;
+    }
 
     public String getStatus() {
         return status;
